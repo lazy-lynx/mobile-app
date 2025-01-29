@@ -1,0 +1,9 @@
+# FVM Version Cache
+.fvm/
+
+# Local
+.dart_tool
+.vscode
+
+# Temp
+/pubspec.lock
