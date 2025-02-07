@@ -17,9 +17,10 @@ include: package:lints/recommended.yaml
 
 linter:
   rules:
-    avoid_print: false
+    avoid_print: true
     camel_case_types: true
     prefer_single_quotes: true
+    avoid_classes_with_only_static_members: true
 # analyzer:
 #   exclude:
 #     - path/to/excluded/files/**
