@@ -4,6 +4,7 @@
 # Local
 .dart_tool
 .vscode
+build
 
 # Temp
 /pubspec.lock
