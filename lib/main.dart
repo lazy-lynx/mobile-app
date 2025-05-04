@@ -1,8 +1,25 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 void main() {
-  runApp(const MyApp());
+  runZonedGuarded(
+    () {
+      runApp(
+        const MyApp(),
+      );
+    },
+    (
+      final err,
+      final stackTrace,
+    ) {
+      logger.e(err);
+    },
+  );
 }
 
 class MyApp extends StatelessWidget {

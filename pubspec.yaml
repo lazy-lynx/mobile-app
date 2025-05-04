@@ -28,6 +28,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  logger: ^2.5.0
   ui_kit:
     path: packages/ui_kit
 
