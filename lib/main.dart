@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         body: Center(
-          child: Text(AppLocalizations.of(context)?.helloWorld ?? ''),
+          child: Text(AppLocalizations.of(context)?.helloWorld ?? 'hm'),
         ),
       ),
     );
