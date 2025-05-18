@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Push-up",
+    "description": "A basic, multi-joint exercise performed on the floor. The main muscles involved are the pectorals and triceps. Indirectly loaded are the anterior deltoids, forearms, small muscles of the hand, lower back muscles, abs and quadriceps."
+  },
+  {
+    "id": 2,
+    "name": "Reverse Bench Dips",
+    "description": "Reverse push-ups work the triceps, deep chest muscles, and rear deltoids well. This is one of the few exercises that develops all three groups at the same time. The main benefit of the exercise is a more focused work on the triceps."
+  }
+]

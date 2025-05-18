@@ -31,6 +31,8 @@ class $AssetsIconsGen {
 class Assets {
   const Assets._();
 
+  static const String package = 'ui_kit';
+
   static const $AssetsIconsGen icons = $AssetsIconsGen();
 }
 
@@ -46,11 +48,14 @@ class SvgGenImage {
   final Set<String> flavors;
   final bool _isVecFormat;
 
+  static const String package = 'ui_kit';
+
   _svg.SvgPicture svg({
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     double? width,
     double? height,
     BoxFit fit = BoxFit.contain,
@@ -103,5 +108,5 @@ class SvgGenImage {
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/ui_kit/$_assetName';
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/navigation_service.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class LayoutScreenWidget extends StatelessWidget {
   const LayoutScreenWidget({
@@ -10,31 +12,34 @@ class LayoutScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NavigationService navigation = NavigationService();
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Title'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100.0),
+        child: Container(
+          height: 80.0,
+          color: AppColors.color99001F.withAlpha(20),
+          child: SafeArea(
+            child: Center(
+              child: Text(
+                "Tap'n'Repeat",
+                style: TextStyle(color: AppColors.color99001F),
+              ),
+            ),
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: child,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        // currentIndex: _currentIndex,
-        onTap: (value) {},
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month),
-            label: 'History',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+      body: child,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedTab: navigation.router.state.path! == '/'
+            ? Menu.home
+            : navigation.router.state.path!.contains('/history')
+                ? Menu.history
+                : Menu.settings,
+        onTapHome: () async => navigation.goHome(),
+        onTapHistory: () async => navigation.goHistory(),
+        onTapSettings: () async => navigation.goSettings(),
       ),
     );
   }
