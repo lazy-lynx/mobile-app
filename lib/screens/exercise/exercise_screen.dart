@@ -3,11 +3,11 @@ import 'package:gap/gap.dart';
 
 class Exercise extends StatelessWidget {
   const Exercise({
-    required this.title,
+    required this.id,
     super.key,
   });
 
-  final String title;
+  final String id;
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_app/screens/exercise/exercise_screen.dart';
 import 'package:my_app/screens/history/history_screen.dart';
 import 'package:my_app/screens/home/home_screen.dart';
 import 'package:my_app/screens/settings/settings_screen.dart';
@@ -39,6 +40,15 @@ class NavigationService {
               name: AppRoutes.home.name,
               path: AppRoutes.home.path,
               builder: (context, state) => HomeScreen(),
+              routes: [
+                GoRoute(
+                  name: AppRoutes.exercise.name,
+                  path: AppRoutes.exercise.path,
+                  builder: (context, state) => Exercise(
+                    id: state.pathParameters['id'] ?? '',
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -77,6 +87,10 @@ class AppRoutes {
   static final RouteConfiguration settings = RouteConfiguration(
     name: 'settings',
     path: '/settings',
+  );
+  static final RouteConfiguration exercise = RouteConfiguration(
+    name: 'exercise',
+    path: 'exercise/:id',
   );
 }
 
