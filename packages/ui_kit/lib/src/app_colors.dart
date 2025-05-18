@@ -20,4 +20,6 @@ class AppColors {
   static Color error30 = error.withAlpha(30);
   static Color error20 = error.withAlpha(20);
   static Color error10 = error.withAlpha(10);
+
+  static Color color99001F = Color(0xFF99001F);
 }

@@ -1,40 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/main.dart';
-
-enum BottomBarItemsEnum {
-  home,
-  history,
-  settings,
-}
 
 class LayoutScreenWidget extends StatelessWidget {
   const LayoutScreenWidget({
-    required this.body,
-    required this.pageKey,
+    required this.child,
     super.key,
   });
 
-  final Widget body;
-  final int pageKey;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
-        title: Text(
-          '',
-        ),
+        title: Text('Title'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: body,
+        child: child,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: pageKey,
-        onTap: (value) {
-          router.go('/${BottomBarItemsEnum.values[value].name}');
-        },
+        // currentIndex: _currentIndex,
+        onTap: (value) {},
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

@@ -1,8 +1,9 @@
 {
-    "@@locale": "ru",
-    "helloWorld": "Привет мир!",
-    "@helloWorld": {
-      "description": ""
-    }
-  }
-  
+  "@@locale": "ru",
+  "home": "Главная",
+  "@home": {},
+  "history": "История",
+  "@history": {},
+  "settings": "Настройки",
+  "@settings": {}
+}
