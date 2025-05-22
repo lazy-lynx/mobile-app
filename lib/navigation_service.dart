@@ -44,7 +44,7 @@ class NavigationService {
                 GoRoute(
                   name: AppRoutes.exercise.name,
                   path: AppRoutes.exercise.path,
-                  builder: (context, state) => Exercise(
+                  builder: (context, state) => ExerciseScreen(
                     id: state.pathParameters['id'] ?? '',
                   ),
                 ),
@@ -73,6 +73,15 @@ class NavigationService {
   Future<void> goHome() async => router.goNamed(AppRoutes.home.name);
   Future<void> goHistory() async => router.goNamed(AppRoutes.history.name);
   Future<void> goSettings() async => router.goNamed(AppRoutes.settings.name);
+  Future<void> goExercise({
+    required String id,
+  }) async =>
+      router.goNamed(
+        AppRoutes.exercise.name,
+        pathParameters: {
+          'id': id,
+        },
+      );
 }
 
 class AppRoutes {

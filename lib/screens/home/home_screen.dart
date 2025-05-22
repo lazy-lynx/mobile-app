@@ -3,27 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:my_app/models/exercise.dart';
+import 'package:my_app/navigation_service.dart';
 import 'package:ui_kit/ui_kit.dart';
-
-class ExerciseModel {
-  final int id;
-  final String name;
-  final String description;
-
-  ExerciseModel({
-    required this.id,
-    required this.name,
-    required this.description,
-  });
-
-  factory ExerciseModel.fromJson(Map<String, dynamic> json) {
-    return ExerciseModel(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-    );
-  }
-}
 
 Future<List<ExerciseModel>> loadExercisesFromAsset() async {
   final jsonString = await rootBundle.loadString('assets/data.json');
@@ -51,6 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final navigation = NavigationService();
+
     return FutureBuilder<List<ExerciseModel>>(
       future: futureExercises,
       builder: (context, snapshot) {
@@ -69,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              onTap: () {},
+              onTap: () => navigation.goExercise(
+                id: snapshot.data![index].id,
+              ),
               textColor: AppColors.color99001F,
               splashColor: AppColors.color99001F.withAlpha(20),
             ),

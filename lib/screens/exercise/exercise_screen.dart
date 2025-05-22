@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:my_app/screens/exercise/bloc/exercise_screen_bloc.dart';
+import 'package:my_app/screens/exercise/bloc/exercise_screen_event.dart';
+import 'package:my_app/screens/exercise/bloc/exercise_screen_state.dart';
 
-class Exercise extends StatelessWidget {
-  const Exercise({
+class ExerciseScreen extends StatelessWidget {
+  const ExerciseScreen({
     required this.id,
     super.key,
   });
@@ -11,19 +15,41 @@ class Exercise extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Description:',
-          style: TextStyle(
-            fontSize: 18.0,
-          ),
+    return BlocProvider(
+      create: (_) => ExerciseScreenBloc()
+        ..add(
+          ExerciseScreenInitEvent(id: id),
         ),
-        Gap(10.0),
-        Text(
-            'A basic, multi-joint exercise performed on the floor. The main muscles involved are the pectorals and triceps. Indirectly loaded are the anterior deltoids, forearms, small muscles of the hand, lower back muscles, abs and quadriceps.')
-      ],
+      child: ExerciseScreenView(),
+    );
+  }
+}
+
+class ExerciseScreenView extends StatelessWidget {
+  const ExerciseScreenView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ExerciseScreenBloc, ExerciseScreenState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              state.exercise.name,
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
+            ),
+            Gap(10.0),
+            Text(
+              state.exercise.description,
+            ),
+          ],
+        );
+      },
     );
   }
 }
