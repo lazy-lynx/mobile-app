@@ -1,17 +1,35 @@
 name: ui_kit
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
 
 environment:
   sdk: ^3.6.1
 
 # Add regular dependencies here.
 dependencies:
-  flutter: 
+  flutter:
     sdk: flutter
-  # path: ^1.8.0
+  flutter_svg: ^2.1.0
 
 dev_dependencies:
   lints: ^5.0.0
   test: ^1.24.0
+  build_runner:
+  flutter_gen_runner:
+
+
+
+flutter_gen:
+  output: ./lib/gen/
+  assets:
+    enabled: true
+    outputs:
+      # gen_for_package: true
+      package_parameter_enabled: true
+  integrations:
+    flutter_svg: true
+
+flutter:
+  assets:
+    - assets/icons/
+    - assets/images/
