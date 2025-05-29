@@ -1,4 +1,4 @@
-import 'package:my_app/models/exercise.dart';
+import 'package:tap_n_repeat/models/exercise.dart';
 
 class ExerciseScreenState {
   const ExerciseScreenState({

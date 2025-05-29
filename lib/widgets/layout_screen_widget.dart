@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/navigation_service.dart';
+import 'package:tap_n_repeat/navigation_service.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class LayoutScreenWidget extends StatelessWidget {

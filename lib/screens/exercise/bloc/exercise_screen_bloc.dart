@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
-import 'package:my_app/models/exercise.dart';
-import 'package:my_app/screens/exercise/bloc/exercise_screen_event.dart';
-import 'package:my_app/screens/exercise/bloc/exercise_screen_state.dart';
+import 'package:tap_n_repeat/models/exercise.dart';
+import 'package:tap_n_repeat/screens/exercise/bloc/exercise_screen_event.dart';
+import 'package:tap_n_repeat/screens/exercise/bloc/exercise_screen_state.dart';
 
 class ExerciseScreenBloc extends Bloc<ExerciseScreenEvent, ExerciseScreenState> {
   ExerciseScreenBloc()

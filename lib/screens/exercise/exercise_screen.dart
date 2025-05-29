@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:my_app/screens/exercise/bloc/exercise_screen_bloc.dart';
-import 'package:my_app/screens/exercise/bloc/exercise_screen_event.dart';
-import 'package:my_app/screens/exercise/bloc/exercise_screen_state.dart';
+import 'package:tap_n_repeat/screens/exercise/bloc/exercise_screen_bloc.dart';
+import 'package:tap_n_repeat/screens/exercise/bloc/exercise_screen_event.dart';
+import 'package:tap_n_repeat/screens/exercise/bloc/exercise_screen_state.dart';
 
 class ExerciseScreen extends StatelessWidget {
   const ExerciseScreen({
