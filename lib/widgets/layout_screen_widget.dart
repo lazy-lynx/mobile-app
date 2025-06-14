@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:tap_n_repeat/navigation_service.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -18,25 +19,19 @@ class LayoutScreenWidget extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
         child: Container(
-          height: 80.0,
-          color: AppColors.color99001F.withAlpha(20),
+          padding: EdgeInsets.all(16.0),
+          color: AppColors.color99001F,
           child: SafeArea(
-            child: Center(
-              child: Text(
-                "Tap'n'Repeat",
-                style: TextStyle(color: AppColors.color99001F),
-              ),
+            child: Text(
+              "Tap'n'Repeat",
+              style: AppTextStyles.roboto20w700,
             ),
           ),
         ),
       ),
       body: child,
       bottomNavigationBar: CustomBottomNavigationBar(
-        selectedTab: navigation.router.state.path! == '/'
-            ? Menu.home
-            : navigation.router.state.path!.contains('/history')
-                ? Menu.history
-                : Menu.settings,
+        selectedTab: Menu.values.firstWhereOrNull((e) => e.name == navigation.router.state.name) ?? Menu.home,
         onTapHome: () async => navigation.goHome(),
         onTapHistory: () async => navigation.goHistory(),
         onTapSettings: () async => navigation.goSettings(),

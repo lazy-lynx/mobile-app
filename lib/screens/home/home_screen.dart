@@ -35,38 +35,40 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final navigation = NavigationService();
 
-    return FutureBuilder<List<ExerciseModel>>(
-      future: futureExercises,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return ListView.separated(
-            itemCount: snapshot.data!.length,
-            separatorBuilder: (context, index) => Gap(6.0),
-            itemBuilder: (context, index) => ListTile(
-              title: Text(
-                snapshot.data![index].name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+    return Scaffold(
+      body: FutureBuilder<List<ExerciseModel>>(
+        future: futureExercises,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.separated(
+              itemCount: snapshot.data!.length,
+              separatorBuilder: (context, index) => Gap(6.0),
+              itemBuilder: (context, index) => ListTile(
+                title: Text(
+                  snapshot.data![index].name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  snapshot.data![index].description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                onTap: () => navigation.goExercise(
+                  id: snapshot.data![index].id,
+                ),
+                textColor: AppColors.color99001F,
+                splashColor: AppColors.color99001F.withAlpha(20),
               ),
-              subtitle: Text(
-                snapshot.data![index].description,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              onTap: () => navigation.goExercise(
-                id: snapshot.data![index].id,
-              ),
-              textColor: AppColors.color99001F,
-              splashColor: AppColors.color99001F.withAlpha(20),
-            ),
+            );
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+          return Center(
+            child: CircularProgressIndicator(),
           );
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+        },
+      ),
     );
   }
 }

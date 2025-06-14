@@ -32,24 +32,26 @@ class ExerciseScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExerciseScreenBloc, ExerciseScreenState>(
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              state.exercise.name,
-              style: TextStyle(
-                fontSize: 18.0,
+    return Scaffold(
+      body: BlocBuilder<ExerciseScreenBloc, ExerciseScreenState>(
+        builder: (context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                state.exercise.name,
+                style: TextStyle(
+                  fontSize: 18.0,
+                ),
               ),
-            ),
-            Gap(10.0),
-            Text(
-              state.exercise.description,
-            ),
-          ],
-        );
-      },
+              Gap(10.0),
+              Text(
+                state.exercise.description,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
