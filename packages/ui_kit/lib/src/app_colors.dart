@@ -22,4 +22,8 @@ class AppColors {
   static Color error10 = error.withAlpha(10);
 
   static Color color99001F = Color(0xFF99001F);
+  static Color color3B0099 = Color(0xFF3B0099);
+  static Color color2600FF = Color(0xFF2600FF);
+
+  static Color colorF2F2F7 = Color(0xFFF2F2F7);
 }
