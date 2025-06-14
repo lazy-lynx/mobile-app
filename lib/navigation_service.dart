@@ -25,51 +25,96 @@ class NavigationService {
 
   late final GoRouter router;
 
+  /// 🔄 Анимации переходов
+  static final fadeTransition =
+      (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+    return FadeTransition(opacity: animation, child: child);
+  };
+
+  static final slideFromRightTransition =
+      (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+    final offset = Tween(begin: const Offset(1.0, 0), end: Offset.zero).chain(CurveTween(curve: Curves.ease));
+    return SlideTransition(position: animation.drive(offset), child: child);
+  };
+
+  /// 📦 Обёртка для GoRoute с кастомным переходом
+  static GoRoute goRouteWithTransition({
+    required String name,
+    required String path,
+    required Widget Function(BuildContext, GoRouterState) builder,
+    List<RouteBase> routes = const [],
+    RouteTransitionsBuilder? transition,
+  }) {
+    return GoRoute(
+      name: name,
+      path: path,
+      routes: routes,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: builder(context, state),
+          transitionsBuilder: transition ?? fadeTransition,
+          transitionDuration: const Duration(milliseconds: 300),
+        );
+      },
+    );
+  }
+
+  /// 📍 Основной список маршрутов
   final List<RouteBase> _routes = [
-    GoRoute(
+    // Onboarding (вне shell'а)
+    goRouteWithTransition(
       name: AppRoutes.onboarding.name,
       path: AppRoutes.onboarding.path,
       builder: (context, state) => OnboardingScreen(),
     ),
+
+    // Shell с вкладками
     StatefulShellRoute.indexedStack(
       pageBuilder: (context, state, navigationShell) {
-        return NoTransitionPage(
-          child: LayoutScreenWidget(
-            child: navigationShell,
-          ),
+        return CustomTransitionPage(
+          key: state.pageKey,
+          transitionsBuilder: fadeTransition,
+          child: LayoutScreenWidget(child: navigationShell),
         );
       },
       branches: [
+        // Home + Exercise
         StatefulShellBranch(
           routes: [
-            GoRoute(
+            goRouteWithTransition(
               name: AppRoutes.home.name,
               path: AppRoutes.home.path,
               builder: (context, state) => HomeScreen(),
               routes: [
-                GoRoute(
+                goRouteWithTransition(
                   name: AppRoutes.exercise.name,
                   path: AppRoutes.exercise.path,
                   builder: (context, state) => ExerciseScreen(
                     id: state.pathParameters['id'] ?? '',
                   ),
+                  transition: fadeTransition,
                 ),
               ],
             ),
           ],
         ),
+
+        // History
         StatefulShellBranch(
           routes: [
-            GoRoute(
+            goRouteWithTransition(
               name: AppRoutes.history.name,
               path: AppRoutes.history.path,
               builder: (context, state) => HistoryScreen(),
             ),
           ],
         ),
+
+        // Settings
         StatefulShellBranch(
           routes: [
-            GoRoute(
+            goRouteWithTransition(
               name: AppRoutes.settings.name,
               path: AppRoutes.settings.path,
               builder: (context, state) => SettingsScreen(),

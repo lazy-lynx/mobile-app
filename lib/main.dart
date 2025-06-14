@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:logger/logger.dart';
+import 'package:tap_n_repeat/l10n/app_localizations.dart';
 import 'package:tap_n_repeat/navigation_service.dart';
 
 var logger = Logger();
