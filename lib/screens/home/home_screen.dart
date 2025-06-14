@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:my_app/models/exercise.dart';
-import 'package:my_app/navigation_service.dart';
+import 'package:tap_n_repeat/models/exercise.dart';
+import 'package:tap_n_repeat/navigation_service.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 Future<List<ExerciseModel>> loadExercisesFromAsset() async {

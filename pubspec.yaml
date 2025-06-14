@@ -1,5 +1,5 @@
-name: my_app
-description: "A new Flutter project."
+name: tap_n_repeat
+description: "Tap'n'Repeat"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -27,10 +27,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_launcher_icons: ^0.14.3
   flutter_localizations:
     sdk: flutter
   gap: ^3.0.1
   go_router: ^15.1.2
+  google_fonts: ^6.2.1
   intl: any
   logger: ^2.5.0
   ui_kit:

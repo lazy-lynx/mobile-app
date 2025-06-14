@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_app/screens/exercise/exercise_screen.dart';
-import 'package:my_app/screens/history/history_screen.dart';
-import 'package:my_app/screens/home/home_screen.dart';
-import 'package:my_app/screens/settings/settings_screen.dart';
-import 'package:my_app/widgets/layout_screen_widget.dart';
+import 'package:tap_n_repeat/screens/exercise/exercise_screen.dart';
+import 'package:tap_n_repeat/screens/history/history_screen.dart';
+import 'package:tap_n_repeat/screens/home/home_screen.dart';
+import 'package:tap_n_repeat/screens/onboarding/onboarding_screen.dart';
+import 'package:tap_n_repeat/screens/settings/settings_screen.dart';
+import 'package:tap_n_repeat/widgets/layout_screen_widget.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -13,7 +14,7 @@ class NavigationService {
   NavigationService._internal() {
     router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: AppRoutes.home.path,
+      initialLocation: AppRoutes.onboarding.path,
       debugLogDiagnostics: kDebugMode,
       routes: _routes,
     );
@@ -25,6 +26,11 @@ class NavigationService {
   late final GoRouter router;
 
   final List<RouteBase> _routes = [
+    GoRoute(
+      name: AppRoutes.onboarding.name,
+      path: AppRoutes.onboarding.path,
+      builder: (context, state) => OnboardingScreen(),
+    ),
     StatefulShellRoute.indexedStack(
       pageBuilder: (context, state, navigationShell) {
         return NoTransitionPage(
@@ -52,20 +58,24 @@ class NavigationService {
             ),
           ],
         ),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            name: AppRoutes.history.name,
-            path: AppRoutes.history.path,
-            builder: (context, state) => HistoryScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            name: AppRoutes.settings.name,
-            path: AppRoutes.settings.path,
-            builder: (context, state) => SettingsScreen(),
-          ),
-        ]),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              name: AppRoutes.history.name,
+              path: AppRoutes.history.path,
+              builder: (context, state) => HistoryScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              name: AppRoutes.settings.name,
+              path: AppRoutes.settings.path,
+              builder: (context, state) => SettingsScreen(),
+            ),
+          ],
+        ),
       ],
     )
   ];
@@ -87,7 +97,7 @@ class NavigationService {
 class AppRoutes {
   static final RouteConfiguration home = RouteConfiguration(
     name: 'home',
-    path: '/',
+    path: '/home',
   );
   static final RouteConfiguration history = RouteConfiguration(
     name: 'history',
@@ -100,6 +110,10 @@ class AppRoutes {
   static final RouteConfiguration exercise = RouteConfiguration(
     name: 'exercise',
     path: 'exercise/:id',
+  );
+  static final RouteConfiguration onboarding = RouteConfiguration(
+    name: 'onboarding',
+    path: '/onboarding',
   );
 }
 
