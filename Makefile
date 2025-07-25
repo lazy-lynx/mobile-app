@@ -9,3 +9,6 @@ gen-l10n:
 
 gen-ui-kit-models:
 	cd ./packages/ui_kit && make gen-models
+
+gen-models:
+	./scripts/gen_models.sh

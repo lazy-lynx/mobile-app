@@ -1,6 +1,4 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:tap_n_repeat/navigation_service.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class LayoutScreenWidget extends StatelessWidget {
@@ -13,8 +11,6 @@ class LayoutScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavigationService navigation = NavigationService();
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
@@ -23,19 +19,13 @@ class LayoutScreenWidget extends StatelessWidget {
           color: AppColors.color99001F,
           child: SafeArea(
             child: Text(
-              "Tap'n'Repeat",
+              'Planks&Plants',
               style: AppTextStyles.roboto20w700,
             ),
           ),
         ),
       ),
       body: child,
-      bottomNavigationBar: CustomBottomNavigationBar(
-        selectedTab: Menu.values.firstWhereOrNull((e) => e.name == navigation.router.state.name) ?? Menu.home,
-        onTapHome: () async => navigation.goHome(),
-        onTapHistory: () async => navigation.goHistory(),
-        onTapSettings: () async => navigation.goSettings(),
-      ),
     );
   }
 }

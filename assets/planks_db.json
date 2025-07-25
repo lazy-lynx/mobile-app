@@ -1,0 +1,34 @@
+[
+  {
+    "id": "basic_plank",
+    "title": "Классическая планка",
+    "image": "assets/images/basic_plank.png",
+    "level": "Легкий",
+    "duration": 30,
+    "description": "Поддерживайте тело в прямой линии, опираясь на локти и носки ног."
+  },
+  {
+    "id": "side_plank",
+    "title": "Боковая планка",
+    "image": "assets/images/side_plank.png",
+    "level": "Средний",
+    "duration": 30,
+    "description": "Лягте на бок, поднимите бедра, опираясь на одну руку или локоть."
+  },
+  {
+    "id": "reverse_plank",
+    "title": "Обратная планка",
+    "image": "assets/images/reverse_plank.png",
+    "level": "Средний",
+    "duration": 40,
+    "description": "Сядьте, упритесь руками за спиной и поднимите тело вверх, формируя прямую линию."
+  },
+  {
+    "id": "extended_plank",
+    "title": "Планка с вытянутыми руками",
+    "image": "assets/images/extended_plank.png",
+    "level": "Сложный",
+    "duration": 45,
+    "description": "Положение как в отжиманиях, держите тело прямо, напрягите пресс."
+  }
+]

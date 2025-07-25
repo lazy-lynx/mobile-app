@@ -1,17 +1,19 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-import 'package:tap_n_repeat/l10n/app_localizations.dart';
-import 'package:tap_n_repeat/navigation_service.dart';
+import 'package:planks_and_plants/l10n/app_localizations.dart';
+import 'package:planks_and_plants/navigation/app_routes.dart';
 
 var logger = Logger();
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
   runZonedGuarded(
     () {
-      final navigationService = NavigationService();
-      runApp(App(navigationService: navigationService));
+      runApp(App());
     },
     (final err, final stackTrace) => logger.e(err),
   );
@@ -19,11 +21,8 @@ void main() {
 
 class App extends StatelessWidget {
   const App({
-    required this.navigationService,
     super.key,
   });
-
-  final NavigationService navigationService;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,12 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: navigationService.router,
+      routerConfig: GoRouter(
+        navigatorKey: _rootNavigatorKey,
+        initialLocation: AppRoutes.planks.path,
+        debugLogDiagnostics: kDebugMode,
+        routes: routes,
+      ),
       builder: (context, child) => child ?? SizedBox(),
     );
   }
