@@ -8,6 +8,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   collection: ^1.19.1
+  circular_countdown: ^2.1.0
   flutter:
     sdk: flutter
   flutter_svg: ^2.1.0

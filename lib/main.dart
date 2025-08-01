@@ -9,6 +9,12 @@ import 'package:planks_and_plants/navigation/app_routes.dart';
 
 var logger = Logger();
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final router = GoRouter(
+  navigatorKey: _rootNavigatorKey,
+  initialLocation: AppRoutes.planks.path,
+  debugLogDiagnostics: kDebugMode,
+  routes: routes,
+);
 
 void main() {
   runZonedGuarded(
@@ -34,12 +40,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: GoRouter(
-        navigatorKey: _rootNavigatorKey,
-        initialLocation: AppRoutes.planks.path,
-        debugLogDiagnostics: kDebugMode,
-        routes: routes,
-      ),
+      routerConfig: router,
       builder: (context, child) => child ?? SizedBox(),
     );
   }

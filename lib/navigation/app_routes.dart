@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:planks_and_plants/features/plank/plank_screen.dart';
 import 'package:planks_and_plants/features/planks/planks_screen.dart';
 import 'package:planks_and_plants/widgets/layouts/layout_screen_widget.dart';
 
@@ -10,7 +11,7 @@ class AppRoutes {
   );
   static final RouteConfiguration plank = RouteConfiguration(
     name: 'plank',
-    path: 'plank/:id',
+    path: 'plank',
   );
 }
 
@@ -53,10 +54,9 @@ final List<RouteBase> routes = [
               GoRoute(
                 name: AppRoutes.plank.name,
                 path: AppRoutes.plank.path,
-                builder: (context, state) => FlutterLogo(),
-                // PlankScreen(
-                //   id: state.pathParameters['id'] ?? '',
-                // ),
+                builder: (context, state) => PlankScreen(
+                  args: state.extra as PlankScreenArgs,
+                ),
               ),
             ],
           ),
